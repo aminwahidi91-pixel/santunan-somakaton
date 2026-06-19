@@ -107,15 +107,12 @@
             padding-bottom: 8px;
         }
 
-        /* Tata Letak Penceramah (Foto Bisa Diklik) */
+        /* Tata Letak Penceramah Minimalis */
         .speaker-box {
             display: flex;
             align-items: center;
-            gap: 20px;
-            background: #f0f7f3;
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px dashed var(--primary-color);
+            gap: 25px;
+            padding: 15px 5px;
         }
 
         .speaker-img {
@@ -126,7 +123,7 @@
             border: 3px solid var(--secondary-color);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             flex-shrink: 0;
-            cursor: pointer; /* Memberikan tanda bahwa foto bisa diklik */
+            cursor: pointer;
             transition: transform 0.2s;
         }
 
@@ -231,6 +228,52 @@
 
         .btn-copy:hover {
             background: var(--primary-color);
+        }
+
+        /* TAMPILAN TABEL DAFTAR DONATUR */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .donor-table th {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .donor-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .donor-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .status-badge {
+            background-color: #25d366;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        #loading-text {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 15px;
         }
 
         /* Galeri Grid */
@@ -393,7 +436,7 @@
             
             .speaker-box {
                 gap: 30px;
-                padding: 30px;
+                padding: 30px 5px;
             }
             .speaker-img {
                 width: 150px;
@@ -418,7 +461,7 @@
             <div class="speaker-box">
                 <img src="kiyai-prayitno.jpg" alt="Bapak Kiyai Ahmad Prayitno" class="speaker-img" onclick="openLightbox('kiyai-prayitno.jpg')" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
                 <div class="speaker-info">
-                    <div class="speaker-label">Penceramah (Klik Foto):</div>
+                    <div class="speaker-label">Penceramah:</div>
                     <div class="speaker-name">Bapak Kiyai AHMAD PRAYITNO, S.Pd.i, M.Pd</div>
                     <div class="speaker-title">Pengasuh Ponpes Irsyadul Awwam<br>Selanegara - Kaligondang Purbalingga</div>
                 </div>
@@ -440,7 +483,7 @@
             </div>
 
             <div class="card">
-                <div class="card-title">Galeri Kegiatan (Klik Foto)</div>
+                <div class="card-title">Galeri Kegiatan</div>
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox('Galeri1.jpg')"><img src="Galeri1.jpg" alt="Galeri 1" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
                     <div class="gallery-item" onclick="openLightbox('Galeri2.jpg')"><img src="Galeri2.jpg" alt="Galeri 2" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
@@ -469,7 +512,7 @@
                         <div class="acc-number" id="bri-number">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri-number', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri-number', this)">Salur Rekening</button>
                 </div>
 
                 <div class="bank-account">
@@ -478,7 +521,7 @@
                         <div class="acc-number" id="mandiri-number">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri-number', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri-number', this)">Salur Rekening</button>
                 </div>
 
                 <div class="bank-account">
@@ -487,7 +530,27 @@
                         <div class="acc-number" id="dana-number">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana-number', this)">Salin Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana-number', this)">Salur Nomor</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Daftar Donatur Terkini</div>
+                <p style="font-size: 14px; color: #555; margin-bottom: 10px;">Terima kasih kepada para hamba Allah yang telah menyisihkan rezekinya:</p>
+                <div class="table-responsive">
+                    <div id="loading-text">Memuat data donatur terbaru...</div>
+                    <table class="donor-table" id="donor-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Donatur</th>
+                                <th>Jumlah</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donor-rows">
+                            </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -533,6 +596,59 @@
 </div>
 
 <script>
+    // MASUKKAN URL CSV GOOGLE SHEETS KAMU DI SINI
+    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVXiIGzx5bIFCUg_CJo9MjARwpuNhxo4rU7uI1c85OfhVqCRLTlBq5BbrRjeshWumb7UdqWO6LIX8H/pub?output=csv";
+
+    // Fungsi mengambil data dari Google Sheets secara otomatis
+    async function fetchDonors() {
+        if(SPREADSHEET_CSV_URL === "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVXiIGzx5bIFCUg_CJo9MjARwpuNhxo4rU7uI1c85OfhVqCRLTlBq5BbrRjeshWumb7UdqWO6LIX8H/pub?output=csv") {
+            document.getElementById("loading-text").innerText = "Sistem online siap. Silakan hubungkan link Google Sheets Anda.";
+            return;
+        }
+        try {
+            const response = await fetch(SPREADSHEET_CSV_URL);
+            const data = await response.text();
+            const rows = data.split("\n").slice(1); // Lewati baris judul kolom pertama
+            
+            let htmlContent = "";
+            let nomor = 1;
+
+            rows.forEach(row => {
+                // Memisahkan kolom menggunakan koma (format CSV)
+                const columns = row.split(",");
+                if (columns.length >= 3 && columns[0].trim() !== "") {
+                    const nama = columns[0].trim();
+                    const jumlah = columns[1].trim();
+                    const status = columns[2].trim() || "Diterima";
+
+                    htmlContent += `<tr>
+                        <td>${nomor}</td>
+                        <td>${nama}</td>
+                        <td>${jumlah}</td>
+                        <td><span class="status-badge">${status}</span></td>
+                    </tr>`;
+                    nomor++;
+                }
+            });
+
+            if (htmlContent !== "") {
+                document.getElementById("donor-rows").innerHTML = htmlContent;
+                document.getElementById("loading-text").style.display = "none";
+                document.getElementById("donor-table").style.display = "table";
+            } else {
+                document.getElementById("loading-text").innerText = "Belum ada data donatur masuk.";
+            }
+        } catch (error) {
+            console.error("Gagal memuat data:", error);
+            document.getElementById("loading-text").innerText = "Gagal memuat data donatur secara online.";
+        }
+    }
+
+    // Jalankan pemanggilan data online saat web dibuka
+    window.onload = function() {
+        fetchDonors();
+    };
+
     // Fungsi Menyalin Rekening
     function copyText(elementId, buttonElement) {
         var textToCopy = document.getElementById(elementId).innerText;
