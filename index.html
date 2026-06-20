@@ -380,10 +380,10 @@
 </div>
 
 <script>
-    // Link Donatur Terkini (Tab Utama / Sheet Pertama)
+    // 1. LINK CSV DATA DONATUR (Pastikan ini link hasil publikasi khusus tab "Donatur" saja di Google Sheets)
     const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
     
-    // Link Khusus Tab Doa (Sesuai kode publish yang Anda berikan)
+    // 2. LINK CSV DATA DOA (Sudah mengunci ke gid tab doa milik Anda)
     const DOA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=1298661039&single=true&output=csv";
 
     function copyText(id, btn) {
@@ -403,7 +403,7 @@
         }, 2000);
     }
 
-    // Mengambil dan menggambar data donatur (Murni tanpa Doa)
+    // Mengambil dan memproses data donatur (Murni Nama, Jumlah, Status)
     async function fetchDonors() {
         try {
             const response = await fetch(DONOR_CSV_URL);
@@ -427,7 +427,7 @@
         } catch (e) { console.error(e); }
     }
 
-    // Mengambil dan menggambar data Doa dari warga
+    // Mengambil dan memproses data doa dari google form (Mengabaikan timestamp di col[0])
     async function fetchDoa() {
         try {
             const response = await fetch(DOA_CSV_URL);
@@ -437,7 +437,7 @@
             
             rows.forEach((row) => {
                 const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                // Membaca Nama di col[1] dan Isi Doa di col[2] karena col[0] adalah timestamp bawaan Google Form
+                // Membaca Nama di col[1] dan Isi Doa di col[2] karena col[0] adalah kolom timestamp bawaan form
                 if (col.length >= 3 && col[1].trim() !== "") {
                     const nama = col[1].replace(/"/g,'').trim();
                     const teksDoa = col[2].replace(/"/g,'').trim();
