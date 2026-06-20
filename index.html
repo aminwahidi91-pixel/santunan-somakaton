@@ -597,11 +597,11 @@
 
 <script>
     // MASUKKAN URL CSV GOOGLE SHEETS KAMU DI SINI
-    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVXiIGzx5bIFCUg_CJo9MjARwpuNhxo4rU7uI1c85OfhVqCRLTlBq5BbrRjeshWumb7UdqWO6LIX8H/pub?output=csv";
+    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
 
     // Fungsi mengambil data dari Google Sheets secara otomatis
     async function fetchDonors() {
-        if(SPREADSHEET_CSV_URL === "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVXiIGzx5bIFCUg_CJo9MjARwpuNhxo4rU7uI1c85OfhVqCRLTlBq5BbrRjeshWumb7UdqWO6LIX8H/pub?output=csv") {
+        if(SPREADSHEET_CSV_URL === "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv") {
             document.getElementById("loading-text").innerText = "Sistem online siap. Silakan hubungkan link Google Sheets Anda.";
             return;
         }
