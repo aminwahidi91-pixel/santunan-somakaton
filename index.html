@@ -318,7 +318,7 @@
                         <div class="acc-number" id="bri">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -326,7 +326,7 @@
                         <div class="acc-number" id="mandiri">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -334,7 +334,7 @@
                         <div class="acc-number" id="dana">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana', this)">Salin Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana', this)">Salur Nomor</button>
                 </div>
             </div>
 
@@ -380,7 +380,10 @@
 </div>
 
 <script>
+    // Link Donatur Terkini (Tab Utama / Sheet Pertama)
     const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
+    
+    // Link Khusus Tab Doa (Sesuai kode publish yang Anda berikan)
     const DOA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=1298661039&single=true&output=csv";
 
     function copyText(id, btn) {
@@ -400,6 +403,7 @@
         }, 2000);
     }
 
+    // Mengambil dan menggambar data donatur (Murni tanpa Doa)
     async function fetchDonors() {
         try {
             const response = await fetch(DONOR_CSV_URL);
@@ -423,6 +427,7 @@
         } catch (e) { console.error(e); }
     }
 
+    // Mengambil dan menggambar data Doa dari warga
     async function fetchDoa() {
         try {
             const response = await fetch(DOA_CSV_URL);
@@ -432,7 +437,7 @@
             
             rows.forEach((row) => {
                 const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                // Menyesuaikan struktur Google Form yang otomatis menyisipkan kolom waktu (timestamp) di indeks col[0]
+                // Membaca Nama di col[1] dan Isi Doa di col[2] karena col[0] adalah timestamp bawaan Google Form
                 if (col.length >= 3 && col[1].trim() !== "") {
                     const nama = col[1].replace(/"/g,'').trim();
                     const teksDoa = col[2].replace(/"/g,'').trim();
