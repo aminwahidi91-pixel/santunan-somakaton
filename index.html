@@ -80,7 +80,6 @@
             opacity: 0.95;
         }
 
-        /* Layout Grid */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -98,7 +97,7 @@
         }
 
         .card-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 20px;
@@ -107,7 +106,7 @@
             padding-bottom: 8px;
         }
 
-        /* Tata Letak Penceramah Minimalis */
+        /* Penceramah Section */
         .speaker-box {
             display: flex;
             align-items: center;
@@ -124,221 +123,78 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             flex-shrink: 0;
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .speaker-img:hover {
-            transform: scale(1.04);
-        }
+        .speaker-info { text-align: left; }
+        .speaker-name { font-size: 20px; font-weight: bold; }
 
-        .speaker-info {
-            text-align: left;
-        }
+        /* TABEL DONATUR */
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
+        .donor-table { width: 100%; border-collapse: collapse; font-size: 15px; text-align: left; }
+        .donor-table th { background-color: var(--primary-color); color: white; padding: 10px; font-weight: bold; }
+        .donor-table td { padding: 10px; border-bottom: 1px solid #e0e0e0; }
+        .donor-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .status-badge { background-color: #25d366; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
 
-        .speaker-label {
-            font-size: 14px;
-            color: var(--primary-color);
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 3px;
-        }
-
-        .speaker-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--dark-color);
-            line-height: 1.2;
-        }
-
-        .speaker-title {
-            font-size: 15px;
-            color: #444;
-            margin-top: 8px;
-        }
-
-        /* Waktu & Tempat */
-        .info-grid {
-            display: grid;
-            gap: 12px;
-            font-size: 16px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            background: #fafafa;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .info-item strong {
-            width: 90px;
-            color: var(--primary-color);
-            flex-shrink: 0;
-        }
-
-        /* Rekening Donasi */
-        .donation-box {
-            background: linear-gradient(135deg, #fffdf6, #fff9e6);
-            border-left-color: var(--secondary-color);
-        }
-
-        .bank-account {
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 12px;
-            border: 1px solid #e2d196;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .bank-info {
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .bank-name {
-            font-weight: bold;
-            color: #b8860b;
-            font-size: 15px;
-        }
-
-        .acc-number {
-            font-size: 21px;
-            font-weight: bold;
-            color: var(--dark-color);
-            margin: 2px 0;
-        }
-
-        .btn-copy {
-            background: #b8860b;
-            color: #ffffff;
-            border: none;
-            padding: 6px 14px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-left: 10px;
-            white-space: nowrap;
-        }
-
-        .btn-copy:hover {
-            background: var(--primary-color);
-        }
-
-        /* TAMPILAN TABEL DAFTAR DONATUR */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin-top: 10px;
-        }
-
-        .donor-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 15px;
-            text-align: left;
-        }
-
-        .donor-table th {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 10px;
-            font-weight: bold;
-        }
-
-        .donor-table td {
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .donor-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .status-badge {
-            background-color: #25d366;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        #loading-text {
-            text-align: center;
-            font-style: italic;
-            color: #777;
-            padding: 15px;
-        }
-
-        /* Galeri Grid */
-        .gallery-grid {
+        /* GRID PENERIMA MANFAAT */
+        .children-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
         }
 
-        .gallery-item {
-            position: relative;
-            background: #eee;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 4 / 3;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.06);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            color: #fff;
-            font-size: 13px;
+        .child-card {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 10px;
             text-align: center;
-            padding: 6px 0;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* MODAL POP-UP UNTUK FOTO */
+        .child-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .child-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 2px solid #f0f0f0;
+        }
+
+        .child-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+
+        /* MODAL DETAIL ANAK & GALERI */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
+            padding-top: 50px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.9);
         }
 
-        .modal-content {
+        .modal-content-wrapper {
             margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            border-radius: 10px;
-            border: 3px solid var(--secondary-color);
+            width: 90%;
+            max-width: 450px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            border: 4px solid var(--secondary-color);
             animation: zoomIn 0.3s;
         }
 
@@ -347,102 +203,51 @@
             to {transform: scale(1); opacity: 1;}
         }
 
+        .modal-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .modal-info { padding: 20px; }
+        .modal-info h2 { color: var(--primary-color); margin-bottom: 5px; }
+        .modal-info p { font-size: 18px; color: #555; font-weight: bold; }
+
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
+            top: 15px; right: 25px;
+            color: white; font-size: 40px; font-weight: bold; cursor: pointer;
         }
+
+        /* REKENING */
+        .bank-account {
+            background: #ffffff; padding: 15px; border-radius: 8px; margin-top: 10px;
+            border: 1px solid #e2d196; display: flex; justify-content: space-between; align-items: center;
+        }
+        .bank-info { flex-grow: 1; text-align: left; }
+        .acc-number { font-size: 21px; font-weight: bold; color: var(--dark-color); }
+        .btn-copy { background: #b8860b; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-weight: bold; margin-left: 10px;}
+
+        /* GALERI */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-caption { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.6); color: white; font-size: 11px; text-align: center; padding: 4px 0;}
 
         /* Kontak Person */
-        .contact-list {
-            font-size: 16px;
-        }
+        .contact-list { font-size: 16px; }
+        .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .contact-item:last-child { border-bottom: none; }
+        .btn-wa { color: #0b5227; text-decoration: none; font-weight: bold; background: #e6f9ed; padding: 4px 14px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(11, 82, 39, 0.2); }
 
-        .contact-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+        /* SPONSOR */
+        .sponsor-section { text-align: center; padding: 30px; background: white; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);}
+        .sponsor-img { width: 100%; max-width: 900px; height: auto; }
 
-        .contact-item:last-child {
-            border-bottom: none;
-        }
-
-        .btn-wa {
-            color: #0b5227;
-            text-decoration: none;
-            font-weight: bold;
-            background: #e6f9ed;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            border: 1px solid rgba(11, 82, 39, 0.2);
-        }
-
-        .btn-wa:hover {
-            background: #0b5227;
-            color: #fff;
-        }
-
-        /* Sponsor Section */
-        .sponsor-section {
-            text-align: center;
-            padding: 30px 20px;
-            background: #ffffff;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .sponsor-section p {
-            font-weight: bold;
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .sponsor-img {
-            display: block;
-            width: 100%;
-            max-width: 900px;
-            height: auto;
-            margin: 0 auto;
-            border-radius: 8px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 15px;
-            border-top: 1px solid #ddd;
-        }
-
-        /* Responsive Desktop */
         @media (min-width: 768px) {
-            .main-layout {
-                grid-template-columns: 7fr 5fr;
-                align-items: start;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .speaker-box {
-                gap: 30px;
-                padding: 30px 5px;
-            }
-            .speaker-img {
-                width: 150px;
-                height: 200px;
-            }
+            .main-layout { grid-template-columns: 7fr 5fr; align-items: start;}
+            .children-grid, .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .speaker-img { width: 150px; height: 200px; }
         }
     </style>
 </head>
@@ -450,7 +255,7 @@
 
 <div class="container">
     <header>
-        <img src="LOGO.png" alt="Logo Utama" class="logo-main" onerror="this.style.display='none';">
+        <img src="LOGO.png" alt="Logo" class="logo-main" onerror="this.style.display='none';">
         <h1>Santunan Anak Yatim</h1>
         <p>Bersama Pemuda Anker-X Somakaton Pemuda Peduli</p>
     </header>
@@ -460,97 +265,77 @@
         <div class="left-column" style="display: grid; gap: 25px;">
             
             <div class="speaker-box">
-                <img src="kiyai-prayitno.jpg" alt="Bapak Kiyai Ahmad Prayitno" class="speaker-img" onclick="openLightbox('kiyai-prayitno.jpg')" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
+                <img src="kiyai-prayitno.jpg" alt="Penceramah" class="speaker-img" onclick="openChildModal('kiyai-prayitno.jpg', 'Bpk. Kiyai Ahmad Prayitno', 'Penceramah Utama')" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
                 <div class="speaker-info">
-                    <div class="speaker-label">Penceramah:</div>
                     <div class="speaker-name">Bapak Kiyai AHMAD PRAYITNO, S.Pd.i, M.Pd</div>
-                    <div class="speaker-title">Pengasuh Ponpes Irsyadul Awwam<br>Selanegara - Kaligondang Purbalingga</div>
+                    <p>Pengasuh Ponpes Irsyadul Awwam, Purbalingga</p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-title">Pelaksanaan Acara</div>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <strong>Hari :</strong> Minggu, 28 Juni 2026
-                    </div>
-                    <div class="info-item">
-                        <strong>Pukul :</strong> 07.30 WIB
-                    </div>
-                    <div class="info-item">
-                        <strong>Tempat :</strong> Halaman Masjid Istiqomah Somakaton
-                    </div>
+                <div style="display: grid; gap: 12px; font-size: 16px;">
+                    <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Hari :</strong> Minggu, 28 Juni 2026</div>
+                    <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Pukul :</strong> 07.30 WIB</div>
+                    <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Tempat :</strong> Halaman Masjid Istiqomah Somakaton</div>
                 </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Daftar Anak Penerima Manfaat</div>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Klik foto anak untuk melihat informasi lengkap (Tahun Lahir & Foto Besar).</p>
+                <div id="loading-anak" style="text-align:center; font-style:italic; color:#777; padding: 15px;">Memuat daftar anak penerima manfaat...</div>
+                <div class="children-grid" id="children-container">
+                    </div>
             </div>
 
             <div class="card">
                 <div class="card-title">Galeri Kegiatan</div>
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox('Galeri1.jpg')"><img src="Galeri1.jpg" alt="Galeri 1" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri2.jpg')"><img src="Galeri2.jpg" alt="Galeri 2" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri3.jpg')"><img src="Galeri3.jpg" alt="Galeri 3" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 3</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri4.jpg')"><img src="Galeri4.jpg" alt="Galeri 4" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 4</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri5.jpg')"><img src="Galeri5.jpg" alt="Galeri 5" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 5</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri6.jpg')"><img src="Galeri6.jpg" alt="Galeri 6" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 6</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri7.jpg')"><img src="Galeri7.jpg" alt="Galeri 7" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 7</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri8.jpg')"><img src="Galeri8.jpg" alt="Galeri 8" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 8</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri9.jpg')"><img src="Galeri9.jpg" alt="Galeri 9" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 9</div></div>
-                    <div class="gallery-item" onclick="openLightbox('Galeri10.jpg')"><img src="Galeri10.jpg" alt="Galeri 10" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 10</div></div>
+                    <div class="gallery-item" onclick="openChildModal('Galeri1.jpg', 'Dokumentasi 1', '')"><img src="Galeri1.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
+                    <div class="gallery-item" onclick="openChildModal('Galeri2.jpg', 'Dokumentasi 2', '')"><img src="Galeri2.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
+                    <div class="gallery-item" onclick="openChildModal('Galeri3.jpg', 'Dokumentasi 3', '')"><img src="Galeri3.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 3</div></div>
                 </div>
             </div>
-
         </div>
 
         <div class="right-column" style="display: grid; gap: 25px;">
             
             <div class="card donation-box">
-                <div class="card-title" style="color: #b8860b; border-bottom-color: #e2d196;">Salurkan Donasi Terbaik Anda</div>
-                <p style="font-size: 14px; color: #555; margin-bottom: 5px;">Klik tombol di sebelah kanan nomor rekening untuk menyalin secara otomatis:</p>
-                
+                <div class="card-title" style="color: #b8860b; border-bottom-color: #e2d196;">Donasi Terbaik Anda</div>
                 <div class="bank-account">
                     <div class="bank-info">
-                        <div class="bank-name">BANK BRI</div>
-                        <div class="acc-number" id="bri-number">683801011248539</div>
+                        <span style="color: #b8860b; font-weight: bold;">BANK BRI</span>
+                        <div class="acc-number" id="bri">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri-number', this)">Salur Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri', this)">Salur Rekening</button>
                 </div>
-
                 <div class="bank-account">
                     <div class="bank-info">
-                        <div class="bank-name">BANK MANDIRI</div>
-                        <div class="acc-number" id="mandiri-number">1800001104456</div>
+                        <span style="color: #b8860b; font-weight: bold;">BANK MANDIRI</span>
+                        <div class="acc-number" id="mandiri">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri-number', this)">Salur Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salur Rekening</button>
                 </div>
-
                 <div class="bank-account">
                     <div class="bank-info">
-                        <div class="bank-name">E-WALLET DANA</div>
-                        <div class="acc-number" id="dana-number">085747956221</div>
+                        <span style="color: #b8860b; font-weight: bold;">E-WALLET DANA</span>
+                        <div class="acc-number" id="dana">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana-number', this)">Salur Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana', this)">Salur Nomor</button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-title">Daftar Donatur Terkini</div>
-                <p style="font-size: 14px; color: #555; margin-bottom: 10px;">Terima kasih kepada para hamba Allah yang telah menyisihkan rezekinya:</p>
+                <div class="card-title">Donatur Terkini (Live)</div>
                 <div class="table-responsive">
-                    <div id="loading-text">Memuat data donatur terbaru...</div>
+                    <div id="loading-text">Memuat data donatur...</div>
                     <table class="donor-table" id="donor-table" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Donatur</th>
-                                <th>Jumlah</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="donor-rows">
-                            </tbody>
+                        <thead><tr><th>No</th><th>Nama</th><th>Jumlah</th><th>Status</th></tr></thead>
+                        <tbody id="donor-rows"></tbody>
                     </table>
                 </div>
             </div>
@@ -558,133 +343,142 @@
             <div class="card">
                 <div class="card-title">Kontak Person & Konfirmasi</div>
                 <div class="contact-list">
-                    <div class="contact-item">
-                        <span>SARWONO / JEBUL</span>
-                        <a href="https://wa.me/6285747956221?text=Saya%20ingin%20konfirmasi%20donasi%20Santunan%20Anak%20Yatim" target="_blank" class="btn-wa">Kirim WA</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>IMAM MUHAYAT</span>
-                        <a href="https://wa.me/6285878462705?text=Saya%20ingin%20konfirmasi%20donasi%20Santunan%20Anak%20Yatim" target="_blank" class="btn-wa">Kirim WA</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>NUR AZIZ</span>
-                        <a href="https://wa.me/628567734422?text=Saya%20ingin%20konfirmasi%20donasi%20Santunan%20Anak%20Yatim" target="_blank" class="btn-wa">Kirim WA</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>AMIN WAHIDI</span>
-                        <a href="https://wa.me/6285742257770?text=Saya%20ingin%20konfirmasi%20donasi%20Santunan%20Anak%20Yatim" target="_blank" class="btn-wa">Kirim WA</a>
-                    </div>
+                    <div class="contact-item"><span>SARWONO / JEBUL</span><a href="https://wa.me/6285747956221?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>IMAM MUHAYAT</span><a href="https://wa.me/6285878462705?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>NUR AZIZ</span><a href="https://wa.me/628567734422?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>AMIN WAHIDI</span><a href="https://wa.me/6285742257770?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <div class="sponsor-section">
         <p>Sponsor & Didukung Oleh:</p>
-        <img src="sponsor.png" alt="Banner Sponsor Resmi" class="sponsor-img" onerror="this.style.display='none';">
+        <img src="sponsor.png" class="sponsor-img" onerror="this.style.display='none';">
     </div>
 
-    <footer>
+    <footer style="text-align: center; padding: 20px; color: #666;">
         <p>&copy; 2026 Pemuda Anker-X Somakaton Peduli. All Rights Reserved.</p>
     </footer>
 </div>
 
-<div id="imageModal" class="modal" onclick="closeLightbox()">
-    <span class="close-modal" onclick="closeLightbox()">&times;</span>
-    <img class="modal-content" id="imgModalTarget">
+<div id="childModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div class="modal-content-wrapper">
+        <img id="modalImg" class="modal-img">
+        <div class="modal-info">
+            <h2 id="modalName"></h2>
+            <p id="modalYear"></p>
+            <button onclick="closeModal()" style="margin-top:15px; padding: 8px 25px; cursor:pointer; background:var(--primary-color); color:white; border:none; border-radius:5px; font-weight:bold;">Tutup Profil</button>
+        </div>
+    </div>
 </div>
 
 <script>
-    // Link Google Sheets CSV Anda sudah terpasang secara permanen di sini
-    const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
+    // 1. LINK SPREADSHEET DONATUR LIVE
+    const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
 
-    // Fungsi mengambil data dari Google Sheets secara otomatis
-    async function fetchDonors() {
-        try {
-            const response = await fetch(SPREADSHEET_CSV_URL);
-            const data = await response.text();
-            
-            // Mengatasi pembagian baris baru dengan aman
-            const rows = data.split(/\r?\n/).slice(1); 
-            
-            let htmlContent = "";
-            let nomor = 1;
+    // 2. LINK SPREADSHEET DAFTAR ANAK LIVE (SUDAH TERPASANG)
+    const ANAK_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=729780931&single=true&output=csv";
 
-            rows.forEach(row => {
-                // Trik memisahkan koma dengan aman (jika ada teks menggunakan tanda kutip)
-                const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                
-                if (columns.length >= 2 && columns[0].trim() !== "") {
-                    // Menghapus tanda petik sisa jika ada
-                    const nama = columns[0].replace(/^"|"$/g, '').trim();
-                    const jumlah = columns[1].replace(/^"|"$/g, '').trim();
-                    // Jika kolom status kosong, set otomatis ke "Diterima"
-                    const status = (columns[2] ? columns[2].replace(/^"|"$/g, '').trim() : "") || "Diterima";
-
-                    htmlContent += `<tr>
-                        <td>${nomor}</td>
-                        <td>${nama}</td>
-                        <td>${jumlah}</td>
-                        <td><span class="status-badge">${status}</span></td>
-                    </tr>`;
-                    nomor++;
-                }
-            });
-
-            if (htmlContent !== "") {
-                document.getElementById("donor-rows").innerHTML = htmlContent;
-                document.getElementById("loading-text").style.display = "none";
-                document.getElementById("donor-table").style.display = "table";
-            } else {
-                document.getElementById("loading-text").innerText = "Belum ada data donatur terdaftar di lembar kerja.";
-            }
-        } catch (error) {
-            console.error("Gagal memuat data:", error);
-            document.getElementById("loading-text").innerText = "Gagal memuat data donatur secara online.";
-        }
+    // FUNGSI UNTUK MEMBUKA HALAMAN DETAIL POP-UP
+    function openChildModal(imgSrc, name, year) {
+        document.getElementById("modalImg").src = imgSrc;
+        document.getElementById("modalName").innerText = name;
+        document.getElementById("modalYear").innerText = year;
+        document.getElementById("childModal").style.display = "block";
     }
 
-    // Jalankan sistem saat halaman selesai dimuat
-    window.onload = function() {
-        fetchDonors();
-    };
+    function closeModal() {
+        document.getElementById("childModal").style.display = "none";
+    }
 
-    // Fungsi Menyalin Rekening
-    function copyText(elementId, buttonElement) {
-        var textToCopy = document.getElementById(elementId).innerText;
+    // FUNGSI COPY NOMOR REKENING
+    function copyText(id, btn) {
+        const text = document.getElementById(id).innerText;
         var tempInput = document.createElement("input");
-        tempInput.value = textToCopy;
+        tempInput.value = text;
         document.body.appendChild(tempInput);
         tempInput.select();
-        tempInput.setSelectionRange(0, 99999);
         document.execCommand("copy");
         document.body.removeChild(tempInput);
 
-        var originalText = buttonElement.innerText;
-        buttonElement.innerText = "Tersalin!";
-        buttonElement.style.background = "#0b5227";
-
-        setTimeout(function(){
-            buttonElement.innerText = originalText;
-            buttonElement.style.background = "#b8860b";
+        const old = btn.innerText; btn.innerText = "Tersalin!";
+        btn.style.background = "#0b5227";
+        setTimeout(() => {
+            btn.innerText = old;
+            btn.style.background = "#b8860b";
         }, 2000);
     }
 
-    // Fungsi Pop-Up Foto
-    function openLightbox(imageSrc) {
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("imgModalTarget");
-        modal.style.display = "block";
-        modalImg.src = imageSrc;
+    // AMBIL DATA DONATUR SECARA ONLINE
+    async function fetchDonors() {
+        try {
+            const response = await fetch(DONOR_CSV_URL);
+            const data = await response.text();
+            const rows = data.split(/\r?\n/).slice(1);
+            let html = "";
+            let nomor = 1;
+            rows.forEach((row) => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (col.length >= 2 && col[0].trim() !== "") {
+                    html += `<tr><td>${nomor}</td><td>${col[0].replace(/"/g,'')}</td><td>${col[1].replace(/"/g,'')}</td><td><span class="status-badge">${col[2]?col[2].replace(/"/g,''):'Diterima'}</span></td></tr>`;
+                    nomor++;
+                }
+            });
+            if(html !== "") {
+                document.getElementById("donor-rows").innerHTML = html;
+                document.getElementById("loading-text").style.display = "none";
+                document.getElementById("donor-table").style.display = "table";
+            } else {
+                document.getElementById("loading-text").innerText = "Belum ada data donatur.";
+            }
+        } catch (e) { console.error(e); }
     }
 
-    // Fungsi Menutup Pop-Up Foto
-    function closeLightbox() {
-        var modal = document.getElementById("imageModal");
-        modal.style.display = "none";
+    // AMBIL DATA 40+ ANAK SECARA ONLINE
+    async function fetchChildren() {
+        try {
+            const response = await fetch(ANAK_CSV_URL);
+            const data = await response.text();
+            const rows = data.split(/\r?\n/).slice(1);
+            let html = "";
+            
+            rows.forEach(row => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (col.length >= 2 && col[0].trim() !== "") {
+                    const name = col[0].replace(/"/g,'').trim();
+                    const year = col[1].replace(/"/g,'').trim();
+                    const img = col[2] ? col[2].replace(/"/g,'').trim() : "https://via.placeholder.com/150?text=Foto";
+
+                    html += `
+                    <div class="child-card" onclick="openChildModal('${img}', '${name}', '${year}')">
+                        <img src="${img}" class="child-img" onerror="this.src='https://via.placeholder.com/150?text=Foto+Anak';">
+                        <div class="child-name">${name}</div>
+                    </div>`;
+                }
+            });
+            
+            if(html !== "") {
+                document.getElementById("children-container").innerHTML = html;
+                document.getElementById("loading-anak").style.display = "none";
+            } else {
+                document.getElementById("loading-anak").innerText = "Belum ada data anak terdaftar.";
+            }
+        } catch (e) { 
+            console.error(e); 
+            document.getElementById("loading-anak").innerText = "Gagal memuat daftar anak secara online.";
+        }
     }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("childModal")) closeModal();
+    }
+    
+    window.onload = function() {
+        fetchDonors();
+        fetchChildren();
+    };
 </script>
 
 </body>
