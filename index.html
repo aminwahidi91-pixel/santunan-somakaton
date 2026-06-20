@@ -125,7 +125,7 @@
         .speaker-info { text-align: left; }
         .speaker-name { font-size: 20px; font-weight: bold; }
 
-        /* TABEL RESPONSIVE & LIVE SCROLLING */
+        /* SCROLLING UNIVERSAL (UNTUK TABEL DONATUR & PAPAN DOA) */
         .table-responsive { 
             width: 100%; 
             max-height: 320px; 
@@ -136,6 +136,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Desain Kustom Scrollbar Kiri & Kanan */
         .table-responsive::-webkit-scrollbar { width: 6px; }
         .table-responsive::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         .table-responsive::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
@@ -159,16 +160,17 @@
         .doa-container {
             display: grid;
             gap: 12px;
-            padding: 10px;
+            padding: 12px;
         }
 
         .doa-item {
-            background: #fcfcfc;
-            border: 1px solid #eee;
+            background: #fdfdfd;
+            border: 1px solid #eef2ee;
             border-radius: 8px;
             padding: 12px;
             border-left: 4px solid var(--secondary-color);
             text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
         }
 
         .doa-nama {
@@ -298,9 +300,11 @@
                 </div>
 
                 <div style="border-top: 2px dashed #eee; padding-top: 15px;">
-                    <span style="font-weight: bold; color: var(--primary-color); font-size: 16px;">➔ Papan Dinding Doa Warga</span>
-                    <div class="table-responsive" id="doa-scroll-box" style="max-height: 250px; margin-top: 8px; border: none;">
-                        <div id="loading-doa" style="text-align:center; font-style:italic; padding:10px; color:#777;">Memuat untaian doa...</div>
+                    <span style="font-weight: bold; color: var(--primary-color); font-size: 16px;">➔ Papan Dinding Doa Warga (Live)</span>
+                    <p style="font-size: 12px; color: #777; font-style: italic; margin-bottom: 5px;">*Kotak doa di bawah akan bergulir otomatis ke bawah</p>
+                    
+                    <div class="table-responsive" id="doa-scroll-box" style="max-height: 290px; background-color: #fafdfa;">
+                        <div id="loading-doa" style="text-align:center; font-style:italic; padding:20px; color:#777;">Memuat untaian doa...</div>
                         <div class="doa-container" id="doa-rows"></div>
                     </div>
                 </div>
@@ -318,7 +322,7 @@
                         <div class="acc-number" id="bri">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -326,7 +330,7 @@
                         <div class="acc-number" id="mandiri">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -334,7 +338,7 @@
                         <div class="acc-number" id="dana">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana', this)">Salin Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana', this)">Salur Nomor</button>
                 </div>
             </div>
 
@@ -437,7 +441,6 @@
             
             rows.forEach((row) => {
                 const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                // Membaca Nama di col[1] dan Isi Doa di col[2] karena col[0] adalah timestamp bawaan google form
                 if (col.length >= 3 && col[1].trim() !== "") {
                     const nama = col[1].replace(/"/g,'').trim();
                     const teksDoa = col[2].replace(/"/g,'').trim();
@@ -462,6 +465,7 @@
         }
     }
 
+    // Fungsi Pengatur Scroll Otomatis & Cerdas (Universal Kiri & Kanan)
     function setupScroll(elementId) {
         const container = document.getElementById(elementId);
         let isHovered = false;
