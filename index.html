@@ -31,7 +31,6 @@
             padding: 0 20px;
         }
 
-        /* Header dengan background Galeri1.jpg dan Ornamen Islami */
         header {
             background: linear-gradient(rgba(11, 82, 39, 0.88), rgba(11, 82, 39, 0.96)), url('Galeri1.jpg') no-repeat center/cover;
             color: #ffffff;
@@ -106,7 +105,6 @@
             padding-bottom: 8px;
         }
 
-        /* Penceramah Section */
         .speaker-box {
             display: flex;
             align-items: center;
@@ -122,13 +120,11 @@
             border: 3px solid var(--secondary-color);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             flex-shrink: 0;
-            cursor: pointer;
         }
 
         .speaker-info { text-align: left; }
         .speaker-name { font-size: 20px; font-weight: bold; }
 
-        /* TABEL DONATUR */
         .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
         .donor-table { width: 100%; border-collapse: collapse; font-size: 15px; text-align: left; }
         .donor-table th { background-color: var(--primary-color); color: white; padding: 10px; font-weight: bold; }
@@ -136,90 +132,30 @@
         .donor-table tr:nth-child(even) { background-color: #f9f9f9; }
         .status-badge { background-color: #25d366; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
 
-        /* GRID PENERIMA MANFAAT */
-        .children-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+        #loading-text { text-align: center; font-style: italic; color: #777; padding: 15px; }
 
-        .child-card {
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .child-card:hover {
-            border-color: var(--secondary-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(-3px);
-        }
-
-        .child-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            border: 2px solid #f0f0f0;
-        }
-
-        .child-name {
+        /* Tombol Pindah Halaman */
+        .btn-page-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #147a3b);
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 18px;
             font-weight: bold;
-            font-size: 16px;
-            color: var(--primary-color);
+            border-radius: 30px;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(11, 82, 39, 0.2);
+            transition: 0.3s;
+            margin-top: 10px;
         }
 
-        /* MODAL DETAIL ANAK & GALERI */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            padding-top: 50px;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
+        .btn-page-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(11, 82, 39, 0.3);
+            background: linear-gradient(135deg, #147a3b, var(--primary-color));
         }
 
-        .modal-content-wrapper {
-            margin: auto;
-            width: 90%;
-            max-width: 450px;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 20px;
-            border: 4px solid var(--secondary-color);
-            animation: zoomIn 0.3s;
-        }
-
-        @keyframes zoomIn {
-            from {transform: scale(0.7); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .modal-img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .modal-info { padding: 20px; }
-        .modal-info h2 { color: var(--primary-color); margin-bottom: 5px; }
-        .modal-info p { font-size: 18px; color: #555; font-weight: bold; }
-
-        .close-modal {
-            position: absolute;
-            top: 15px; right: 25px;
-            color: white; font-size: 40px; font-weight: bold; cursor: pointer;
-        }
-
-        /* REKENING */
         .bank-account {
             background: #ffffff; padding: 15px; border-radius: 8px; margin-top: 10px;
             border: 1px solid #e2d196; display: flex; justify-content: space-between; align-items: center;
@@ -228,25 +164,22 @@
         .acc-number { font-size: 21px; font-weight: bold; color: var(--dark-color); }
         .btn-copy { background: #b8860b; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-weight: bold; margin-left: 10px;}
 
-        /* GALERI */
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; position: relative; }
+        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
         .gallery-caption { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.6); color: white; font-size: 11px; text-align: center; padding: 4px 0;}
 
-        /* Kontak Person */
         .contact-list { font-size: 16px; }
         .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
         .contact-item:last-child { border-bottom: none; }
         .btn-wa { color: #0b5227; text-decoration: none; font-weight: bold; background: #e6f9ed; padding: 4px 14px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(11, 82, 39, 0.2); }
 
-        /* SPONSOR */
         .sponsor-section { text-align: center; padding: 30px; background: white; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);}
         .sponsor-img { width: 100%; max-width: 900px; height: auto; }
 
         @media (min-width: 768px) {
             .main-layout { grid-template-columns: 7fr 5fr; align-items: start;}
-            .children-grid, .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
             .speaker-img { width: 150px; height: 200px; }
         }
     </style>
@@ -265,7 +198,7 @@
         <div class="left-column" style="display: grid; gap: 25px;">
             
             <div class="speaker-box">
-                <img src="kiyai-prayitno.jpg" alt="Penceramah" class="speaker-img" onclick="openChildModal('kiyai-prayitno.jpg', 'Bpk. Kiyai Ahmad Prayitno', 'Penceramah Utama')" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
+                <img src="kiyai-prayitno.jpg" alt="Penceramah" class="speaker-img" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
                 <div class="speaker-info">
                     <div class="speaker-name">Bapak Kiyai AHMAD PRAYITNO, S.Pd.i, M.Pd</div>
                     <p>Pengasuh Ponpes Irsyadul Awwam, Purbalingga</p>
@@ -281,20 +214,20 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-title">Daftar Anak Penerima Manfaat</div>
-                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Klik foto anak untuk melihat informasi lengkap (Tahun Lahir & Foto Besar).</p>
-                <div id="loading-anak" style="text-align:center; font-style:italic; color:#777; padding: 15px;">Memuat daftar anak penerima manfaat...</div>
-                <div class="children-grid" id="children-container">
-                    </div>
+            <div class="card" style="text-align: center; padding: 35px 20px;">
+                <div class="card-title">Anak Penerima Manfaat</div>
+                <p style="margin-bottom: 20px; color: #555; font-size: 16px;">
+                    Mari lihat profil, nama, serta tahun lahir anak-anak yatim somakaton yang berhak menerima penyaluran donasi Anda pada halaman khusus berikut:
+                </p>
+                <a href="anak.html" class="btn-page-link"> Lihat Daftar Anak Penerima Manfaat ➔ </a>
             </div>
 
             <div class="card">
                 <div class="card-title">Galeri Kegiatan</div>
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openChildModal('Galeri1.jpg', 'Dokumentasi 1', '')"><img src="Galeri1.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
-                    <div class="gallery-item" onclick="openChildModal('Galeri2.jpg', 'Dokumentasi 2', '')"><img src="Galeri2.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
-                    <div class="gallery-item" onclick="openChildModal('Galeri3.jpg', 'Dokumentasi 3', '')"><img src="Galeri3.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 3</div></div>
+                    <div class="gallery-item"><img src="Galeri1.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
+                    <div class="gallery-item"><img src="Galeri2.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
+                    <div class="gallery-item"><img src="Galeri3.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 3</div></div>
                 </div>
             </div>
         </div>
@@ -362,38 +295,9 @@
     </footer>
 </div>
 
-<div id="childModal" class="modal">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <div class="modal-content-wrapper">
-        <img id="modalImg" class="modal-img">
-        <div class="modal-info">
-            <h2 id="modalName"></h2>
-            <p id="modalYear"></p>
-            <button onclick="closeModal()" style="margin-top:15px; padding: 8px 25px; cursor:pointer; background:var(--primary-color); color:white; border:none; border-radius:5px; font-weight:bold;">Tutup Profil</button>
-        </div>
-    </div>
-</div>
-
 <script>
-    // 1. LINK SPREADSHEET DONATUR LIVE
     const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
 
-    // 2. LINK SPREADSHEET DAFTAR ANAK LIVE (SUDAH TERPASANG)
-    const ANAK_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=729780931&single=true&output=csv";
-
-    // FUNGSI UNTUK MEMBUKA HALAMAN DETAIL POP-UP
-    function openChildModal(imgSrc, name, year) {
-        document.getElementById("modalImg").src = imgSrc;
-        document.getElementById("modalName").innerText = name;
-        document.getElementById("modalYear").innerText = year;
-        document.getElementById("childModal").style.display = "block";
-    }
-
-    function closeModal() {
-        document.getElementById("childModal").style.display = "none";
-    }
-
-    // FUNGSI COPY NOMOR REKENING
     function copyText(id, btn) {
         const text = document.getElementById(id).innerText;
         var tempInput = document.createElement("input");
@@ -411,7 +315,6 @@
         }, 2000);
     }
 
-    // AMBIL DATA DONATUR SECARA ONLINE
     async function fetchDonors() {
         try {
             const response = await fetch(DONOR_CSV_URL);
@@ -436,50 +339,7 @@
         } catch (e) { console.error(e); }
     }
 
-    // AMBIL DATA 40+ ANAK SECARA ONLINE
-    async function fetchChildren() {
-        try {
-            const response = await fetch(ANAK_CSV_URL);
-            const data = await response.text();
-            const rows = data.split(/\r?\n/).slice(1);
-            let html = "";
-            
-            rows.forEach(row => {
-                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if (col.length >= 2 && col[0].trim() !== "") {
-                    const name = col[0].replace(/"/g,'').trim();
-                    const year = col[1].replace(/"/g,'').trim();
-                    const img = col[2] ? col[2].replace(/"/g,'').trim() : "https://via.placeholder.com/150?text=Foto";
-
-                    html += `
-                    <div class="child-card" onclick="openChildModal('${img}', '${name}', '${year}')">
-                        <img src="${img}" class="child-img" onerror="this.src='https://via.placeholder.com/150?text=Foto+Anak';">
-                        <div class="child-name">${name}</div>
-                    </div>`;
-                }
-            });
-            
-            if(html !== "") {
-                document.getElementById("children-container").innerHTML = html;
-                document.getElementById("loading-anak").style.display = "none";
-            } else {
-                document.getElementById("loading-anak").innerText = "Belum ada data anak terdaftar.";
-            }
-        } catch (e) { 
-            console.error(e); 
-            document.getElementById("loading-anak").innerText = "Gagal memuat daftar anak secara online.";
-        }
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("childModal")) closeModal();
-    }
-    
-    window.onload = function() {
-        fetchDonors();
-        fetchChildren();
-    };
+    window.onload = fetchDonors;
 </script>
-
 </body>
 </html>
