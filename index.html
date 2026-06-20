@@ -134,26 +134,31 @@
 
         #loading-text { text-align: center; font-style: italic; color: #777; padding: 15px; }
 
-        /* Tombol Pindah Halaman */
+        /* Style Tombol Pindah Halaman */
         .btn-page-link {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary-color), #147a3b);
             color: white;
             text-decoration: none;
-            padding: 14px 28px;
-            font-size: 18px;
+            padding: 14px 24px;
+            font-size: 17px;
             font-weight: bold;
             border-radius: 30px;
             border: 2px solid var(--secondary-color);
-            box-shadow: 0 5px 15px rgba(11, 82, 39, 0.2);
+            box-shadow: 0 5px 15px rgba(11, 82, 39, 0.15);
             transition: 0.3s;
             margin-top: 10px;
         }
 
+        .btn-page-link.alt-btn {
+            background: linear-gradient(135deg, #b8860b, var(--secondary-color));
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.15);
+        }
+
         .btn-page-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(11, 82, 39, 0.3);
-            background: linear-gradient(135deg, #147a3b, var(--primary-color));
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            opacity: 0.95;
         }
 
         .bank-account {
@@ -163,11 +168,6 @@
         .bank-info { flex-grow: 1; text-align: left; }
         .acc-number { font-size: 21px; font-weight: bold; color: var(--dark-color); }
         .btn-copy { background: #b8860b; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-weight: bold; margin-left: 10px;}
-
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-        .gallery-caption { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.6); color: white; font-size: 11px; text-align: center; padding: 4px 0;}
 
         .contact-list { font-size: 16px; }
         .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
@@ -179,7 +179,6 @@
 
         @media (min-width: 768px) {
             .main-layout { grid-template-columns: 7fr 5fr; align-items: start;}
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
             .speaker-img { width: 150px; height: 200px; }
         }
     </style>
@@ -214,22 +213,17 @@
                 </div>
             </div>
 
-            <div class="card" style="text-align: center; padding: 35px 20px;">
-                <div class="card-title">Anak Penerima Manfaat</div>
-                <p style="margin-bottom: 20px; color: #555; font-size: 16px;">
-                    Mari lihat profil, nama, serta tahun lahir anak-anak yatim somakaton yang berhak menerima penyaluran donasi Anda pada halaman khusus berikut:
-                </p>
-                <a href="anak.html" class="btn-page-link"> Lihat Daftar Anak Penerima Manfaat ➔ </a>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Galeri Kegiatan</div>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="Galeri1.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 1</div></div>
-                    <div class="gallery-item"><img src="Galeri2.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 2</div></div>
-                    <div class="gallery-item"><img src="Galeri3.jpg" onerror="this.parentNode.style.background='#ccc';"><div class="gallery-caption">Galeri 3</div></div>
+            <div class="card" style="text-align: center; padding: 30px 20px; display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <div class="card-title" style="margin-bottom: 5px;">Informasi Tambahan</div>
+                    <p style="color: #555; font-size: 15px;">Silakan pilih halaman di bawah untuk melihat detail data kegiatan kami:</p>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <a href="anak.html" class="btn-page-link">Daftar Anak Penerima Manfaat ➔</a>
+                    <a href="galeri.html" class="btn-page-link alt-btn">Galeri Dokumentasi Foto ➔</a>
                 </div>
             </div>
+
         </div>
 
         <div class="right-column" style="display: grid; gap: 25px;">
@@ -333,8 +327,6 @@
                 document.getElementById("donor-rows").innerHTML = html;
                 document.getElementById("loading-text").style.display = "none";
                 document.getElementById("donor-table").style.display = "table";
-            } else {
-                document.getElementById("loading-text").innerText = "Belum ada data donatur.";
             }
         } catch (e) { console.error(e); }
     }
