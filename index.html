@@ -184,10 +184,10 @@
             color: #333;
         }
 
-        /* Iframe Google Form */
+        /* Wrapper Box Untuk Iframe Google Form */
         .form-wrapper {
             width: 100%;
-            height: 340px;
+            height: 350px;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
             overflow: hidden;
@@ -275,7 +275,7 @@
                 <div style="display: grid; gap: 12px; font-size: 16px;">
                     <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Hari :</strong> Minggu, 28 Juni 2026</div>
                     <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Pukul :</strong> 07.30 WIB</div>
-                    <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Tempat :</strong> Halaman Masjid Masjid Istiqomah Somakaton</div>
+                    <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Tempat :</strong> Halaman Masjid Istiqomah Somakaton</div>
                 </div>
             </div>
 
@@ -291,10 +291,10 @@
             </div>
 
             <div class="card">
-                <div class="card-title">Kirim Doa & Dukungan Resmi</div>
+                <div class="card-title">Titip Doa & Dukungan Terbaik Anda</div>
                 
                 <div class="form-wrapper">
-                    <iframe src="LINK_EMBED_GOOGLE_FORM_KAMU" width="100%" height="340" frameborder="0" marginheight="0" marginwidth="0">Memuat formulir…</iframe>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfRs8O8b9zzFhZ7Xwr5SnrP5VNxW7K9hsbVZM2qwaBSZGQ-7A/viewform?embedded=true" width="100%" height="350" frameborder="0" marginheight="0" marginwidth="0">Memuat formulir…</iframe>
                 </div>
 
                 <div style="border-top: 2px dashed #eee; padding-top: 15px;">
@@ -381,8 +381,6 @@
 
 <script>
     const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
-    
-    // Link CSV Papan Doa Warga dari Google Sheets Anda
     const DOA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=1298661039&single=true&output=csv";
 
     function copyText(id, btn) {
@@ -434,10 +432,10 @@
             
             rows.forEach((row) => {
                 const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if (col.length >= 2 && col[0].trim() !== "") {
-                    // Catatan: Jika form membuat kolom timestamp/waktu di awal, sesuaikan urutan indeks kolomnya (misal col[1] dan col[2])
-                    const nama = col[0].replace(/"/g,'').trim();
-                    const teksDoa = col[1].replace(/"/g,'').trim();
+                // Menyesuaikan struktur Google Form yang otomatis menyisipkan kolom waktu (timestamp) di indeks col[0]
+                if (col.length >= 3 && col[1].trim() !== "") {
+                    const nama = col[1].replace(/"/g,'').trim();
+                    const teksDoa = col[2].replace(/"/g,'').trim();
                     
                     html += `
                     <div class="doa-item">
