@@ -197,6 +197,7 @@
 
         .bank-info {
             flex-grow: 1;
+            text-align: left;
         }
 
         .bank-name {
@@ -512,7 +513,7 @@
                         <div class="acc-number" id="bri-number">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri-number', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri-number', this)">Salur Rekening</button>
                 </div>
 
                 <div class="bank-account">
@@ -521,7 +522,7 @@
                         <div class="acc-number" id="mandiri-number">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri-number', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri-number', this)">Salur Rekening</button>
                 </div>
 
                 <div class="bank-account">
@@ -530,7 +531,7 @@
                         <div class="acc-number" id="dana-number">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana-number', this)">Salin Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana-number', this)">Salur Nomor</button>
                 </div>
             </div>
 
@@ -596,30 +597,31 @@
 </div>
 
 <script>
-    // MASUKKAN URL CSV GOOGLE SHEETS KAMU DI SINI
+    // Link Google Sheets CSV Anda sudah terpasang secara permanen di sini
     const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
 
     // Fungsi mengambil data dari Google Sheets secara otomatis
     async function fetchDonors() {
-        if(SPREADSHEET_CSV_URL === "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv") {
-            document.getElementById("loading-text").innerText = "Sistem online siap. Silakan hubungkan link Google Sheets Anda.";
-            return;
-        }
         try {
             const response = await fetch(SPREADSHEET_CSV_URL);
             const data = await response.text();
-            const rows = data.split("\n").slice(1); // Lewati baris judul kolom pertama
+            
+            // Mengatasi pembagian baris baru dengan aman
+            const rows = data.split(/\r?\n/).slice(1); 
             
             let htmlContent = "";
             let nomor = 1;
 
             rows.forEach(row => {
-                // Memisahkan kolom menggunakan koma (format CSV)
-                const columns = row.split(",");
-                if (columns.length >= 3 && columns[0].trim() !== "") {
-                    const nama = columns[0].trim();
-                    const jumlah = columns[1].trim();
-                    const status = columns[2].trim() || "Diterima";
+                // Trik memisahkan koma dengan aman (jika ada teks menggunakan tanda kutip)
+                const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                
+                if (columns.length >= 2 && columns[0].trim() !== "") {
+                    // Menghapus tanda petik sisa jika ada
+                    const nama = columns[0].replace(/^"|"$/g, '').trim();
+                    const jumlah = columns[1].replace(/^"|"$/g, '').trim();
+                    // Jika kolom status kosong, set otomatis ke "Diterima"
+                    const status = (columns[2] ? columns[2].replace(/^"|"$/g, '').trim() : "") || "Diterima";
 
                     htmlContent += `<tr>
                         <td>${nomor}</td>
@@ -636,7 +638,7 @@
                 document.getElementById("loading-text").style.display = "none";
                 document.getElementById("donor-table").style.display = "table";
             } else {
-                document.getElementById("loading-text").innerText = "Belum ada data donatur masuk.";
+                document.getElementById("loading-text").innerText = "Belum ada data donatur terdaftar di lembar kerja.";
             }
         } catch (error) {
             console.error("Gagal memuat data:", error);
@@ -644,7 +646,7 @@
         }
     }
 
-    // Jalankan pemanggilan data online saat web dibuka
+    // Jalankan sistem saat halaman selesai dimuat
     window.onload = function() {
         fetchDonors();
     };
