@@ -31,6 +31,7 @@
             padding: 0 20px;
         }
 
+        /* Header dengan background Galeri1.jpg dan Ornamen Islami */
         header {
             background: linear-gradient(rgba(11, 82, 39, 0.88), rgba(11, 82, 39, 0.96)), url('Galeri1.jpg') no-repeat center/cover;
             color: #ffffff;
@@ -125,14 +126,51 @@
         .speaker-info { text-align: left; }
         .speaker-name { font-size: 20px; font-weight: bold; }
 
-        .table-responsive { width: 100%; overflow-x: auto; margin-top: 10px; }
+        /* PERBAKAN FITUR SCROLLING TABEL DONATUR */
+        .table-responsive { 
+            width: 100%; 
+            max-height: 320px; /* Tinggi maksimal kotak tabel */
+            overflow-y: auto;  /* Memunculkan scrollbar vertikal */
+            margin-top: 10px; 
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            scroll-behavior: smooth;
+        }
+
+        /* Desain Kustom Scrollbar */
+        .table-responsive::-webkit-scrollbar {
+            width: 6px;
+        }
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--primary-color); 
+            border-radius: 10px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #147a3b; 
+        }
+
         .donor-table { width: 100%; border-collapse: collapse; font-size: 15px; text-align: left; }
-        .donor-table th { background-color: var(--primary-color); color: white; padding: 10px; font-weight: bold; }
+        
+        /* Membuat judul kolom tabel tetap diam di atas (Sticky Header) */
+        .donor-table th { 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 12px 10px; 
+            font-weight: bold; 
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        
         .donor-table td { padding: 10px; border-bottom: 1px solid #e0e0e0; }
         .donor-table tr:nth-child(even) { background-color: #f9f9f9; }
         .status-badge { background-color: #25d366; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
 
-        #loading-text { text-align: center; font-style: italic; color: #777; padding: 15px; }
+        #loading-text { text-align: center; font-style: italic; color: #777; padding: 20px; }
 
         /* Style Tombol Pindah Halaman */
         .btn-page-link {
@@ -236,7 +274,7 @@
                         <div class="acc-number" id="bri">683801011248539</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('bri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('bri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -244,7 +282,7 @@
                         <div class="acc-number" id="mandiri">1800001104456</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salin Rekening</button>
+                    <button class="btn-copy" onclick="copyText('mandiri', this)">Salur Rekening</button>
                 </div>
                 <div class="bank-account">
                     <div class="bank-info">
@@ -252,17 +290,26 @@
                         <div class="acc-number" id="dana">085747956221</div>
                         <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
                     </div>
-                    <button class="btn-copy" onclick="copyText('dana', this)">Salin Nomor</button>
+                    <button class="btn-copy" onclick="copyText('dana', this)">Salur Nomor</button>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-title">Donatur Terkini (Live)</div>
-                <div class="table-responsive">
+                <p style="font-size: 13px; color: #666; margin-bottom: 5px; font-style: italic;">*Tabel akan bergulir otomatis secara live</p>
+                <div class="table-responsive" id="scroll-box">
                     <div id="loading-text">Memuat data donatur...</div>
                     <table class="donor-table" id="donor-table" style="display: none;">
-                        <thead><tr><th>No</th><th>Nama</th><th>Jumlah</th><th>Status</th></tr></thead>
-                        <tbody id="donor-rows"></tbody>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Donatur</th>
+                                <th>Jumlah</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donor-rows">
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -291,6 +338,7 @@
 
 <script>
     const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?output=csv";
+    let autoScrollInterval;
 
     function copyText(id, btn) {
         const text = document.getElementById(id).innerText;
@@ -309,6 +357,7 @@
         }, 2000);
     }
 
+    // Ambil Data Donatur secara Online
     async function fetchDonors() {
         try {
             const response = await fetch(DONOR_CSV_URL);
@@ -327,8 +376,39 @@
                 document.getElementById("donor-rows").innerHTML = html;
                 document.getElementById("loading-text").style.display = "none";
                 document.getElementById("donor-table").style.display = "table";
+                
+                // Mulai gulir otomatis setelah data selesai terisi penuh
+                startAutoScroll();
+            } else {
+                document.getElementById("loading-text").innerText = "Belum ada data donatur terdaftar.";
             }
-        } catch (e) { console.error(e); }
+        } catch (e) { 
+            console.error(e); 
+            document.getElementById("loading-text").innerText = "Gagal memuat data live donatur.";
+        }
+    }
+
+    // Sistem Gulir Otomatis (Auto-Scroll)
+    function startAutoScroll() {
+        const container = document.getElementById('scroll-box');
+        let isHovered = false;
+
+        // Jeda jalannya scroll jika kursor mouse atau sentuhan jari sedang menahan tabel
+        container.addEventListener('mouseenter', () => isHovered = true);
+        container.addEventListener('mouseleave', () => isHovered = false);
+        container.addEventListener('touchstart', () => isHovered = true);
+        container.addEventListener('touchend', () => isHovered = false);
+
+        autoScrollInterval = setInterval(() => {
+            if (!isHovered) {
+                // Jika guliran sudah menyentuh batas paling bawah, kembali pelan ke atas
+                if (container.scrollTop + container.clientHeight >= container.scrollHeight - 1) {
+                    container.scrollTop = 0;
+                } else {
+                    container.scrollTop += 1; // Kecepatan gerak gulir (1 pixel per gerakan)
+                }
+            }
+        }, 35); // Kecepatan interval pergerakan (milidetik)
     }
 
     window.onload = fetchDonors;
