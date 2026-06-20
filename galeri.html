@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto Dokumentasi - Pemuda Anker-X Somakaton</title>
+    <style>
+        :root {
+            --primary-color: #0b5227;
+            --secondary-color: #d4af37;
+            --dark-color: #1a1a1a;
+            --light-color: #f4f6f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .nav-back-box {
+            margin-bottom: 25px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+            transition: 0.2s;
+            font-size: 16px;
+        }
+
+        .btn-back:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 6px solid var(--secondary-color);
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        /* GRID STRUKTUR UNTUK FOTO KEGIATAN */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: #fdfdfd;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 12px;
+            background: #ffffff;
+            color: var(--dark-color);
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        /* LIGHTBOX POP-UP FULLSCREEN */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 40px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+
+        .modal-content-wrapper {
+            margin: auto;
+            width: 90%;
+            max-width: 750px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 15px;
+            border: 4px solid var(--secondary-color);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            background: #111;
+        }
+
+        .modal-caption {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 25px;
+            color: white; font-size: 45px; font-weight: bold; cursor: pointer;
+        }
+
+        @media (min-width: 576px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-back-box">
+        <a href="index.html" class="btn-back"> 🡨 Kembali ke Halaman Utama </a>
+    </div>
+
+    <div class="card">
+        <div class="page-title">Galeri Dokumentasi Kegiatan</div>
+        <div class="page-subtitle">Bukti nyata penyaluran dan transparansi kegiatan Pemuda Anker-X Somakaton Peduli (Klik foto untuk memperbesar)</div>
+        
+        <div id="loading-galeri" style="text-align:center; font-style:italic; color:#777; padding: 30px;">Sinkronisasi album foto Google Sheets...</div>
+        
+        <div class="gallery-grid" id="gallery-container">
+            </div>
+    </div>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div class="modal-content-wrapper">
+        <img id="modalImg" class="modal-img">
+        <div id="modalText" class="modal-caption"></div>
+    </div>
+</div>
+
+<script>
+    // LINK CSV TAB GALERI YANG SUDAH TERPASANG SEMPURNA
+    const GALERI_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=1367591763&single=true&output=csv";
+
+    function openModal(imgSrc, caption) {
+        document.getElementById("modalImg").src = imgSrc;
+        document.getElementById("modalText").innerText = caption;
+        document.getElementById("imageModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    async function fetchGallery() {
+        try {
+            const response = await fetch(GALERI_CSV_URL);
+            const data = await response.text();
+            const rows = data.split(/\r?\n/).slice(1);
+            let html = "";
+            
+            rows.forEach(row => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (col.length >= 2 && col[1].trim() !== "") {
+                    const caption = col[0].replace(/"/g,'').trim() || "Dokumentasi Kegiatan";
+                    const img = col[1].replace(/"/g,'').trim();
+
+                    html += `
+                    <div class="gallery-item" onclick="openModal('${img}', '${caption}')">
+                        <img src="${img}" onerror="this.src='https://via.placeholder.com/400x300?text=Foto+Kegiatan';">
+                        <div class="gallery-caption">${caption}</div>
+                    </div>`;
+                }
+            });
+            
+            if(html !== "") {
+                document.getElementById("gallery-container").innerHTML = html;
+                document.getElementById("loading-galeri").style.display = "none";
+            } else {
+                document.getElementById("loading-galeri").innerText = "Belum ada foto yang didaftarkan di Google Sheets.";
+            }
+        } catch (e) { 
+            console.error(e); 
+            document.getElementById("loading-galeri").innerText = "Gagal menyinkronkan album foto secara live.";
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("imageModal")) closeModal();
+    }
+    
+    window.onload = fetchGallery;
+</script>
+</body>
+</html>
