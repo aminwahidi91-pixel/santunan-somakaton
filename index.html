@@ -255,7 +255,13 @@
                     Silakan tinggalkan doa, dukungan terbaik, atau pesan semangat untuk adik-adik yatim dan panitia pelaksana di bawah ini:
                 </p>
                 
-                <div id="disqus_thread"></div>
+                <div id="cusdis_thread"
+  data-host="https://cusdis.com"
+  data-app-id="da77651a-96b6-4b67-ba48-4cbbfdf58ec4"
+  data-page-id="santunan_ankerx_somakaton"
+  data-page-url="https://ankerx-somakaton.github.io/"
+  data-page-title="Santunan Anak Yatim Somakaton">
+</div>
             </div>
 
         </div>
@@ -401,13 +407,7 @@
     }
 
     // KONFIGURASI KODE SISTEM KOMENTAR (DISQUS)
-    (function() { 
-        var d = document, s = d.createElement('script');
-        // PENTING: Ganti 'ankerx-somakaton' di bawah dengan nama shortname Disqus Anda jika ingin dikelola mandiri
-        s.src = 'https://ankerx-somakaton.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    <script async src="https://cusdis.com/js/cusdis.es.js"></script>
 
     window.onload = fetchDonors;
 </script>
