@@ -10,13 +10,14 @@
             --secondary-color: #d4af37;
             --dark-color: #1a1a1a;
             --light-color: #f4f6f4;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: var(--font-main);
         }
 
         body {
@@ -31,7 +32,6 @@
             padding: 30px 20px;
         }
 
-        /* Batas Navigasi Kembali */
         .nav-back-box {
             margin-bottom: 25px;
         }
@@ -78,7 +78,6 @@
             font-size: 16px;
         }
 
-        /* GRID STRUKTUR UNTUK 40+ ANAK */
         .children-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -122,14 +121,16 @@
             display: none;
             position: fixed;
             z-index: 1000;
-            padding-top: 60px;
+            padding-top: 40px;
             left: 0; top: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(4px);
+            overflow-y: auto;
         }
 
         .modal-content-wrapper {
-            margin: auto;
+            margin: 20px auto;
             width: 90%;
             max-width: 420px;
             background: white;
@@ -139,6 +140,7 @@
             padding-bottom: 25px;
             border: 4px solid var(--secondary-color);
             animation: zoomIn 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         @keyframes zoomIn {
@@ -148,18 +150,49 @@
 
         .modal-img {
             width: 100%;
-            max-height: 380px;
+            max-height: 350px;
             object-fit: cover;
         }
 
-        .modal-info { padding: 20px 15px 0; }
-        .modal-info h2 { color: var(--primary-color); margin-bottom: 6px; }
-        .modal-info p { font-size: 18px; color: #555; font-weight: bold; }
+        .modal-info { 
+            padding: 20px 20px 0; 
+            text-align: left; /* Diubah ke kiri agar detail biodata rapi */
+        }
+        
+        .modal-info h2 { 
+            color: var(--primary-color); 
+            margin-bottom: 15px; 
+            text-align: center;
+            font-size: 24px;
+        }
+        
+        /* Desain list biodata di dalam modal */
+        .bio-info {
+            background: #f9faf9;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #eef2ee;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #333;
+        }
+        
+        .bio-info strong {
+            color: var(--primary-color);
+            display: inline-block;
+            width: 100px;
+        }
 
         .close-modal {
             position: absolute;
             top: 15px; right: 25px;
             color: white; font-size: 40px; font-weight: bold; cursor: pointer;
+            transition: 0.2s;
+            z-index: 1001;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary-color);
         }
 
         @media (min-width: 576px) {
@@ -183,8 +216,7 @@
         
         <div id="loading-anak" style="text-align:center; font-style:italic; color:#777; padding: 30px;">Menghubungkan data online Google Sheets...</div>
         
-        <div class="children-grid" id="children-container">
-            </div>
+        <div class="children-grid" id="children-container"></div>
     </div>
 </div>
 
@@ -194,20 +226,26 @@
         <img id="modalImg" class="modal-img">
         <div class="modal-info">
             <h2 id="modalName"></h2>
-            <p id="modalYear"></p>
-            <button onclick="closeModal()" style="margin-top:20px; padding: 8px 25px; cursor:pointer; background:var(--primary-color); color:white; border:none; border-radius:5px; font-weight:bold; font-size:15px;">Tutup Profil</button>
+            
+            <div class="bio-info"><strong>Keterangan :</strong> <span id="modalYear"></span></div>
+            <div class="bio-info"><strong>Orang Tua :</strong> <span id="modalParent"></span></div>
+            <div class="bio-info"><strong>Alamat :</strong> <span id="modalAddress"></span></div>
+            
+            <button onclick="closeModal()" style="margin-top:15px; width:100%; padding: 10px; cursor:pointer; background:var(--primary-color); color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; transition: 0.2s;">Tutup Profil</button>
         </div>
     </div>
 </div>
 
 <script>
-    // URL LIVE TAB ANAK MILIK ANDA
+    // URL LIVE TAB ANAK
     const ANAK_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=729780931&single=true&output=csv";
 
-    function openChildModal(imgSrc, name, year) {
+    function openChildModal(imgSrc, name, year, parent, address) {
         document.getElementById("modalImg").src = imgSrc;
         document.getElementById("modalName").innerText = name;
         document.getElementById("modalYear").innerText = year;
+        document.getElementById("modalParent").innerText = parent;
+        document.getElementById("modalAddress").innerText = address;
         document.getElementById("childModal").style.display = "block";
     }
 
@@ -228,9 +266,14 @@
                     const name = col[0].replace(/"/g,'').trim();
                     const year = col[1].replace(/"/g,'').trim();
                     const img = col[2] ? col[2].replace(/"/g,'').trim() : "https://via.placeholder.com/150?text=Foto";
+                    
+                    // Membaca kolom ke-4 (Orang tua) dan ke-5 (Alamat)
+                    const parent = col[3] ? col[3].replace(/"/g,'').trim() : "-";
+                    const address = col[4] ? col[4].replace(/"/g,'').trim() : "-";
 
+                    // Mengirimkan data tambahan ke fungsi click modal
                     html += `
-                    <div class="child-card" onclick="openChildModal('${img}', '${name}', '${year}')">
+                    <div class="child-card" onclick="openChildModal('${img}', '${name}', '${year}', '${parent}', '${address}')">
                         <img src="${img}" class="child-img" onerror="this.src='https://via.placeholder.com/150?text=Foto+Anak';">
                         <div class="child-name">${name}</div>
                     </div>`;
@@ -249,8 +292,14 @@
         }
     }
 
+    // Menutup modal saat klik area luar modal
     window.onclick = function(event) {
         if (event.target == document.getElementById("childModal")) closeModal();
+    }
+    
+    // Menutup modal saat tombol Escape (Esc) ditekan
+    window.onkeydown = function(event) {
+        if (event.key === "Escape") closeModal();
     }
     
     window.onload = fetchChildren;
