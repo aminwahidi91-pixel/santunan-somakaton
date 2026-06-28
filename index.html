@@ -332,3 +332,216 @@
                     <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Tempat :</strong> Halaman Masjid Istiqomah Somakaton</div>
                 </div>
             </div>
+
+            <div class="card" style="text-align: center; padding: 30px 20px; display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <div class="card-title" style="margin-bottom: 5px;">Informasi Tambahan</div>
+                    <p style="color: #555; font-size: 15px;">Silakan pilih halaman di bawah untuk melihat detail data kegiatan kami:</p>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                    <a href="anak.html" class="btn-page-link">Daftar Anak Penerima Manfaat ➔</a>
+                    <a href="galeri.html" class="btn-page-link alt-btn">Galeri Documentation Foto ➔</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Titip Doa & Dukungan Terbaik Anda</div>
+                
+                <div class="form-wrapper">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfRs8O8b9zzFhZ7Xwr5SnrP5VNxW7K9hsbVZM2qwaBSZGQ-7A/viewform?embedded=true" width="100%" height="350" frameborder="0" marginheight="0" marginwidth="0">Memuat formulir…</iframe>
+                </div>
+
+                <div style="border-top: 2px dashed #eee; padding-top: 15px;">
+                    <span style="font-weight: bold; color: var(--primary-color); font-size: 16px;">➔ Papan Dinding Doa Warga (Live)</span>
+                    <p style="font-size: 12px; color: #777; font-style: italic; margin-bottom: 5px;">*Kotak doa di bawah akan bergulir otomatis ke bawah</p>
+                    
+                    <div class="table-responsive" id="doa-scroll-box" style="max-height: 290px; background-color: #fafdfa;">
+                        <div id="loading-doa" style="text-align:center; font-style:italic; padding:20px; color:#777;">Memuat untaian doa...</div>
+                        <div class="doa-container" id="doa-rows"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right-column">
+            
+            <div class="card donation-box">
+                <div class="card-title" style="color: #b8860b; border-bottom-color: #e2d196;">Donasi Terbaik Anda</div>
+                <div class="bank-account">
+                    <div class="bank-info">
+                        <span style="color: #b8860b; font-weight: bold;">BANK BRI</span>
+                        <div class="acc-number" id="bri">683801011248539</div>
+                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyText('bri', this)">Copy Rekening</button>
+                </div>
+                <div class="bank-account">
+                    <div class="bank-info">
+                        <span style="color: #b8860b; font-weight: bold;">BANK MANDIRI</span>
+                        <div class="acc-number" id="mandiri">1800001104456</div>
+                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyText('mandiri', this)">Copy Rekening</button>
+                </div>
+                <div class="bank-account">
+                    <div class="bank-info">
+                        <span style="color: #b8860b; font-weight: bold;">E-WALLET DANA</span>
+                        <div class="acc-number" id="dana">085747956221</div>
+                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyText('dana', this)">Copy Nomor</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Donatur Terkini (Live)</div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 5px; font-style: italic;">*Tabel akan bergulir otomatis secara live</p>
+                <div class="table-responsive" id="scroll-box">
+                    <div id="loading-text">Memuat data donatur...</div>
+                    <table class="donor-table" id="donor-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Donatur</th>
+                                <th>Jumlah</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donor-rows"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Kontak Person & Konfirmasi</div>
+                <div class="contact-list">
+                    <div class="contact-item"><span>SARWONO / JEBUL</span><a href="https://wa.me/6285747956221?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>IMAM MUHAYAT</span><a href="https://wa.me/6285878462705?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>NUR AZIZ</span><a href="https://wa.me/628567734422?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                    <div class="contact-item"><span>AMIN WAHIDI</span><a href="https://wa.me/6285742257770?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sponsor-section">
+        <p>Sponsor & Didukung Oleh:</p>
+        <img src="sponsor.png" class="sponsor-img" onerror="this.style.display='none';">
+    </div>
+
+    <footer style="text-align: center; padding: 20px; color: #666;">
+        <p>&copy; 2026 Pemuda Anker-X Somakaton Peduli. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<script>
+    // Link CSV Hasil Kunci Spesifik Tab Donatur (gid=0)
+    const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=0&single=true&output=csv";
+    
+    // Link CSV Hasil Kunci Spesifik Tab Komentar / Doa (gid=647961067)
+    const DOA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=647961067&single=true&output=csv";
+
+    // Fungsi Copy Rekening Modern Clipboard API
+    async function copyText(id, btn) {
+        const text = document.getElementById(id).innerText;
+        try {
+            await navigator.clipboard.writeText(text);
+            const old = btn.innerText; 
+            btn.innerText = "Tersalin!";
+            btn.style.background = "#0b5227";
+            setTimeout(() => {
+                btn.innerText = old;
+                btn.style.background = "#b8860b";
+            }, 2000);
+        } catch (err) {
+            console.error("Gagal menyalin teks: ", err);
+        }
+    }
+
+    // Mengambil & Memproses Data Donatur Terkini Murni
+    async function fetchDonors() {
+        try {
+            const response = await fetch(DONOR_CSV_URL);
+            const data = await response.text();
+            const rows = data.split(/\r?\n/).slice(1);
+            let html = "";
+            let nomor = 1;
+            rows.forEach((row) => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (col.length >= 2 && col[0].trim() !== "") {
+                    html += `<tr><td>${nomor}</td><td>${col[0].replace(/"/g,'')}</td><td>${col[1].replace(/"/g,'')}</td><td><span class="status-badge">${col[2]?col[2].replace(/"/g,''):'Diterima'}</span></td></tr>`;
+                    nomor++;
+                }
+            });
+            if(html !== "") {
+                document.getElementById("donor-rows").innerHTML = html;
+                document.getElementById("loading-text").style.display = "none";
+                document.getElementById("donor-table").style.display = "table";
+                setupScroll('scroll-box');
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    // Mengambil & Memproses Data Doa/Komentar Warga
+    async function fetchDoa() {
+        try {
+            const response = await fetch(DOA_CSV_URL);
+            const data = await response.text();
+            const rows = data.split(/\r?\n/).slice(1);
+            let html = "";
+            
+            rows.forEach((row) => {
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (col.length >= 3 && col[1].trim() !== "") {
+                    const nama = col[1].replace(/"/g,'').trim();
+                    const teksDoa = col[2].replace(/"/g,'').trim();
+                    
+                    html += `
+                    <div class="doa-item">
+                        <div class="doa-nama">➔ ${nama}</div>
+                        <div class="doa-teks">"${teksDoa}"</div>
+                    </div>`;
+                }
+            });
+            if(html !== "") {
+                document.getElementById("doa-rows").innerHTML = html;
+                document.getElementById("loading-doa").style.display = "none";
+                setupScroll('doa-scroll-box');
+            } else {
+                document.getElementById("loading-doa").innerText = "Belum ada untaian doa masuk.";
+            }
+        } catch (e) { 
+            console.error(e); 
+            document.getElementById("loading-doa").innerText = "Gagal memuat papan doa.";
+        }
+    }
+
+    // Fungsi Pengatur Scroll Otomatis (Universal Kiri & Kanan)
+    function setupScroll(elementId) {
+        const container = document.getElementById(elementId);
+        let isHovered = false;
+
+        container.addEventListener('mouseenter', () => isHovered = true);
+        container.addEventListener('mouseleave', () => isHovered = false);
+        container.addEventListener('touchstart', () => isHovered = true);
+        container.addEventListener('touchend', () => isHovered = false);
+
+        setInterval(() => {
+            if (!isHovered) {
+                if (container.scrollTop + container.clientHeight >= container.scrollHeight - 1) {
+                    container.scrollTop = 0;
+                } else {
+                    container.scrollTop += 1;
+                }
+            }
+        }, 40);
+    }
+
+    window.onload = function() {
+        fetchDonors();
+        fetchDoa();
+    };
+</script>
+</body>
+</html>
