@@ -10,13 +10,14 @@
             --secondary-color: #d4af37;
             --dark-color: #1a1a1a;
             --light-color: #f4f6f4;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: var(--font-main);
         }
 
         body {
@@ -38,7 +39,7 @@
             padding: 60px 20px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: relative;
         }
@@ -79,6 +80,51 @@
             opacity: 0.95;
         }
 
+        /* DESAIN BOX TEKS BERJALAN MODERN */
+        .running-text-container {
+            background-color: #fffde7;
+            border-top: 2px solid var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 12px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .running-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--dark-color);
+            letter-spacing: 0.5px;
+        }
+
+        .running-text .highlight-money {
+            color: #d32f2f;
+            font-size: 18px;
+            background-color: rgba(211, 47, 47, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .running-text .highlight-trust {
+            color: var(--primary-color);
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        .running-text-container:hover .running-text {
+            animation-play-state: paused;
+        }
+
+        /* TATA LETAK UTAMA */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -125,7 +171,7 @@
         .speaker-info { text-align: left; }
         .speaker-name { font-size: 20px; font-weight: bold; }
 
-        /* SCROLLING UNIVERSAL (UNTUK TABEL DONATUR & PAPAN DOA) */
+        /* SCROLLING UNIVERSAL */
         .table-responsive { 
             width: 100%; 
             max-height: 320px; 
@@ -136,7 +182,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Desain Kustom Scrollbar Kiri & Kanan */
         .table-responsive::-webkit-scrollbar { width: 6px; }
         .table-responsive::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         .table-responsive::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
@@ -235,7 +280,7 @@
         }
         .bank-info { flex-grow: 1; text-align: left; }
         .acc-number { font-size: 21px; font-weight: bold; color: var(--dark-color); }
-        .btn-copy { background: #b8860b; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-weight: bold; margin-left: 10px;}
+        .btn-copy { background: #b8860b; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-weight: bold; margin-left: 10px; transition: 0.2s;}
 
         .contact-list { font-size: 16px; }
         .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
@@ -247,6 +292,7 @@
 
         @media (min-width: 768px) {
             .main-layout { grid-template-columns: 7fr 5fr; align-items: start;}
+            .left-column, .right-column { display: grid; gap: 25px; }
             .speaker-img { width: 150px; height: 200px; }
         }
     </style>
@@ -260,9 +306,15 @@
         <p>Bersama Pemuda Anker-X Somakaton Pemuda Peduli</p>
     </header>
 
+    <div class="running-text-container">
+        <div class="running-text">
+            TOTAL DONASI YANG DITERIMA <span class="highlight-money">RP. 78.728.000,-</span> DAN KAMI SALURKAN KEPADA MASING MASING PENERIMA MANFAAT <span class="highlight-trust">100% TANPA SERUPIAHPUN PANITIA MENGAMBILNYA!</span>
+        </div>
+    </div>
+
     <div class="main-layout">
         
-        <div class="left-column" style="display: grid; gap: 25px;">
+        <div class="left-column">
             
             <div class="speaker-box">
                 <img src="kiyai-prayitno.jpg" alt="Penceramah" class="speaker-img" onerror="this.src='https://via.placeholder.com/150x200?text=Foto+Kiyai';">
@@ -280,216 +332,3 @@
                     <div style="background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #eee;"><strong>Tempat :</strong> Halaman Masjid Istiqomah Somakaton</div>
                 </div>
             </div>
-
-            <div class="card" style="text-align: center; padding: 30px 20px; display: flex; flex-direction: column; gap: 15px;">
-                <div>
-                    <div class="card-title" style="margin-bottom: 5px;">Informasi Tambahan</div>
-                    <p style="color: #555; font-size: 15px;">Silakan pilih halaman di bawah untuk melihat detail data kegiatan kami:</p>
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-                    <a href="anak.html" class="btn-page-link">Daftar Anak Penerima Manfaat ➔</a>
-                    <a href="galeri.html" class="btn-page-link alt-btn">Galeri Dokumentasi Foto ➔</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Titip Doa & Dukungan Terbaik Anda</div>
-                
-                <div class="form-wrapper">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfRs8O8b9zzFhZ7Xwr5SnrP5VNxW7K9hsbVZM2qwaBSZGQ-7A/viewform?embedded=true" width="100%" height="350" frameborder="0" marginheight="0" marginwidth="0">Memuat formulir…</iframe>
-                </div>
-
-                <div style="border-top: 2px dashed #eee; padding-top: 15px;">
-                    <span style="font-weight: bold; color: var(--primary-color); font-size: 16px;">➔ Papan Dinding Doa Warga (Live)</span>
-                    <p style="font-size: 12px; color: #777; font-style: italic; margin-bottom: 5px;">*Kotak doa di bawah akan bergulir otomatis ke bawah</p>
-                    
-                    <div class="table-responsive" id="doa-scroll-box" style="max-height: 290px; background-color: #fafdfa;">
-                        <div id="loading-doa" style="text-align:center; font-style:italic; padding:20px; color:#777;">Memuat untaian doa...</div>
-                        <div class="doa-container" id="doa-rows"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="right-column" style="display: grid; gap: 25px;">
-            
-            <div class="card donation-box">
-                <div class="card-title" style="color: #b8860b; border-bottom-color: #e2d196;">Donasi Terbaik Anda</div>
-                <div class="bank-account">
-                    <div class="bank-info">
-                        <span style="color: #b8860b; font-weight: bold;">BANK BRI</span>
-                        <div class="acc-number" id="bri">683801011248539</div>
-                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
-                    </div>
-                    <button class="btn-copy" onclick="copyText('bri', this)">Copy Rekening</button>
-                </div>
-                <div class="bank-account">
-                    <div class="bank-info">
-                        <span style="color: #b8860b; font-weight: bold;">BANK MANDIRI</span>
-                        <div class="acc-number" id="mandiri">1800001104456</div>
-                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
-                    </div>
-                    <button class="btn-copy" onclick="copyText('mandiri', this)">Copy Rekening</button>
-                </div>
-                <div class="bank-account">
-                    <div class="bank-info">
-                        <span style="color: #b8860b; font-weight: bold;">E-WALLET DANA</span>
-                        <div class="acc-number" id="dana">085747956221</div>
-                        <div style="font-size: 14px; color: #666;">a/n TOHID PRIYANTO</div>
-                    </div>
-                    <button class="btn-copy" onclick="copyText('dana', this)">Copy Nomor</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Donatur Terkini (Live)</div>
-                <p style="font-size: 13px; color: #666; margin-bottom: 5px; font-style: italic;">*Tabel akan bergulir otomatis secara live</p>
-                <div class="table-responsive" id="scroll-box">
-                    <div id="loading-text">Memuat data donatur...</div>
-                    <table class="donor-table" id="donor-table" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Donatur</th>
-                                <th>Jumlah</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="donor-rows"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Kontak Person & Konfirmasi</div>
-                <div class="contact-list">
-                    <div class="contact-item"><span>SARWONO / JEBUL</span><a href="https://wa.me/6285747956221?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
-                    <div class="contact-item"><span>IMAM MUHAYAT</span><a href="https://wa.me/6285878462705?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
-                    <div class="contact-item"><span>NUR AZIZ</span><a href="https://wa.me/628567734422?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
-                    <div class="contact-item"><span>AMIN WAHIDI</span><a href="https://wa.me/6285742257770?text=Konfirmasi%20Donasi" target="_blank" class="btn-wa">Kirim WA</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="sponsor-section">
-        <p>Sponsor & Didukung Oleh:</p>
-        <img src="sponsor.png" class="sponsor-img" onerror="this.style.display='none';">
-    </div>
-
-    <footer style="text-align: center; padding: 20px; color: #666;">
-        <p>&copy; 2026 Pemuda Anker-X Somakaton Peduli. All Rights Reserved.</p>
-    </footer>
-</div>
-
-<script>
-    // Link CSV Hasil Kunci Spesifik Tab Donatur (gid=0)
-    const DONOR_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=0&single=true&output=csv";
-    
-    // Link CSV Hasil Kunci Spesifik Tab Komentar / Doa (gid=647961067)
-    const DOA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRv3nYgeT0mD1qCpYy9i_C6U1TMVq_Wbxudjxax34iMO9HUrk75fIwb_CMwe6_wguC15s_zd0JLB0n/pub?gid=647961067&single=true&output=csv";
-
-    function copyText(id, btn) {
-        const text = document.getElementById(id).innerText;
-        var tempInput = document.createElement("input");
-        tempInput.value = text;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-
-        const old = btn.innerText; btn.innerText = "Tersalin!";
-        btn.style.background = "#0b5227";
-        setTimeout(() => {
-            btn.innerText = old;
-            btn.style.background = "#b8860b";
-        }, 2000);
-    }
-
-    // Mengambil & Memproses Data Donatur Terkini Murni
-    async function fetchDonors() {
-        try {
-            const response = await fetch(DONOR_CSV_URL);
-            const data = await response.text();
-            const rows = data.split(/\r?\n/).slice(1);
-            let html = "";
-            let nomor = 1;
-            rows.forEach((row) => {
-                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if (col.length >= 2 && col[0].trim() !== "") {
-                    html += `<tr><td>${nomor}</td><td>${col[0].replace(/"/g,'')}</td><td>${col[1].replace(/"/g,'')}</td><td><span class="status-badge">${col[2]?col[2].replace(/"/g,''):'Diterima'}</span></td></tr>`;
-                    nomor++;
-                }
-            });
-            if(html !== "") {
-                document.getElementById("donor-rows").innerHTML = html;
-                document.getElementById("loading-text").style.display = "none";
-                document.getElementById("donor-table").style.display = "table";
-                setupScroll('scroll-box');
-            }
-        } catch (e) { console.error(e); }
-    }
-
-    // Mengambil & Memproses Data Doa/Komentar Warga
-    async function fetchDoa() {
-        try {
-            const response = await fetch(DOA_CSV_URL);
-            const data = await response.text();
-            const rows = data.split(/\r?\n/).slice(1);
-            let html = "";
-            
-            rows.forEach((row) => {
-                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if (col.length >= 3 && col[1].trim() !== "") {
-                    const nama = col[1].replace(/"/g,'').trim();
-                    const teksDoa = col[2].replace(/"/g,'').trim();
-                    
-                    html += `
-                    <div class="doa-item">
-                        <div class="doa-nama">➔ ${nama}</div>
-                        <div class="doa-teks">"${teksDoa}"</div>
-                    </div>`;
-                }
-            });
-            if(html !== "") {
-                document.getElementById("doa-rows").innerHTML = html;
-                document.getElementById("loading-doa").style.display = "none";
-                setupScroll('doa-scroll-box');
-            } else {
-                document.getElementById("loading-doa").innerText = "Belum ada untaian doa masuk.";
-            }
-        } catch (e) { 
-            console.error(e); 
-            document.getElementById("loading-doa").innerText = "Gagal memuat papan doa.";
-        }
-    }
-
-    // Fungsi Pengatur Scroll Otomatis & Cerdas (Universal Kiri & Kanan)
-    function setupScroll(elementId) {
-        const container = document.getElementById(elementId);
-        let isHovered = false;
-
-        container.addEventListener('mouseenter', () => isHovered = true);
-        container.addEventListener('mouseleave', () => isHovered = false);
-        container.addEventListener('touchstart', () => isHovered = true);
-        container.addEventListener('touchend', () => isHovered = false);
-
-        setInterval(() => {
-            if (!isHovered) {
-                if (container.scrollTop + container.clientHeight >= container.scrollHeight - 1) {
-                    container.scrollTop = 0;
-                } else {
-                    container.scrollTop += 1;
-                }
-            }
-        }, 40);
-    }
-
-    window.onload = function() {
-        fetchDonors();
-        fetchDoa();
-    };
-</script>
-</body>
-</html>
